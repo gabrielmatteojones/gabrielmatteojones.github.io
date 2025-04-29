@@ -4,7 +4,7 @@ title: home
 description: Questo è un esempio di homepage con utilizzo del componente "hero"
 lang: it
 ref: homepage
-permalink: /
+permalink: /wps/
 order: 1
 ---
 
