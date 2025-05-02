@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+  <h2>Login</h2>
+  <input type="email" id="email" placeholder="Email"><br>
+  <input type="password" id="password" placeholder="Password"><br>
+  <button onclick="login()">Accedi</button>
+  <p id="status"></p>
+
+  <script>
+    // Config Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyBTU4YncIZH8AFW22xXs0lJad_qulv_nvc",
+      authDomain: "gabrieljonesportal.firebaseapp.com",
+      projectId: "gabrieljonesportal",
+      storageBucket: "gabrieljonesportal.appspot.com",
+      messagingSenderId: "773044143707",
+      appId: "1:773044143707:web:af838ff6788bf85991e17e",
+      measurementId: "G-6V66B6B04Q"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    async function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const status = document.getElementById("status");
+
+      try {
+        const userCredential = await auth.signInWithEmailAndPassword(email, password);
+        const user = userCredential.user;
+        status.textContent = "Login riuscito!";
+        // Puoi fare redirect o mostrare il contenuto
+        window.location.href = "dashboard.html"; // oppure index.html
+      } catch (error) {
+        console.error(error);
+        status.textContent = "Errore: " + error.message;
+      }
+    }
+  </script>
+</body>
+</html>
