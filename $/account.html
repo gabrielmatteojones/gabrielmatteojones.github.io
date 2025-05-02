@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestione Account</title>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+  <h2>Gestione Account</h2>
+
+  <!-- Modifica Email -->
+  <h3>Cambia Email</h3>
+  <input type="email" id="newEmail" placeholder="Nuova email"><br>
+  <button onclick="changeEmail()">Cambia Email</button>
+  <p id="emailStatus"></p>
+
+  <!-- Modifica Password -->
+  <h3>Cambia Password</h3>
+  <input type="password" id="newPassword" placeholder="Nuova password"><br>
+  <button onclick="changePassword()">Cambia Password</button>
+  <p id="passwordStatus"></p>
+
+  <!-- Logout -->
+  <h3>Logout</h3>
+  <button onclick="logout()">Logout</button>
+
+  <script>
+    // Config Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyBTU4YncIZH8AFW22xXs0lJad_qulv_nvc",
+      authDomain: "gabrieljonesportal.firebaseapp.com",
+      projectId: "gabrieljonesportal",
+      storageBucket: "gabrieljonesportal.appspot.com",
+      messagingSenderId: "773044143707",
+      appId: "1:773044143707:web:af838ff6788bf85991e17e",
+      measurementId: "G-6V66B6B04Q"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // Cambia Email
+    async function changeEmail() {
+      const newEmail = document.getElementById("newEmail").value;
+      const user = auth.currentUser;
+      const status = document.getElementById("emailStatus");
+
+      try {
+        if (user) {
+          await user.updateEmail(newEmail);
+          status.textContent = "Email cambiata con successo!";
+        } else {
+          status.textContent = "Non sei loggato!";
+        }
+      } catch (error) {
+        console.error(error);
+        status.textContent = "Errore: " + error.message;
+      }
+    }
+
+    // Cambia Password
+    async function changePassword() {
+      const newPassword = document.getElementById("newPassword").value;
+      const user = auth.currentUser;
+      const status = document.getElementById("passwordStatus");
+
+      try {
+        if (user) {
+          await user.updatePassword(newPassword);
+          status.textContent = "Password cambiata con successo!";
+        } else {
+          status.textContent = "Non sei loggato!";
+        }
+      } catch (error) {
+        console.error(error);
+        status.textContent = "Errore: " + error.message;
+      }
+    }
+
+    // Logout
+    function logout() {
+      auth.signOut()
+        .then(() => {
+          window.location.href = "login.html"; // Reindirizza alla pagina di login
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  </script>
+</body>
+</html>
