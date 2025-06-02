@@ -1,43 +1,66 @@
 ---
 ## Main icon
-icon: "/assets/images/b.svg"
+icon: "/assets/images/logo.svg"
 
 ## Social Card [1200x630]
-social-card: /assets/images/favicons/social-card.png
+social-card: https://gabrieljones.it/assets/images/favicons/social-card.png
 
 ## Site name
 name:
-  it: "Gabriel Jones"
+  en: "A Jekyll theme"
+  it: "Gabriel Matteo Jones"
 
 ## Site description
 description:
-  it: "Animazione, Bibliotecario, Politico e questa è solo una piccola parte del mio enorme mondo"
+  en: "A website with a Jekyll theme"
+  it: "Il sito ufficiale di Gabriel Matteo Jones"
 
 ## Site author
 author:
-  it: "AGID IT"
+  en: "GJWS"
+  it: "GJWS"
 
 ## Social
 social-links:
-  it:
-    twitter:
-      name: "twitter"
-      url: "https://twitter.com/gabrieljonesit"
-    instagram:
+  en:
+    SnapChat:
+      name: "SnapChat"
+      url: "https://www.snapchat.com/add/gabriel_jones4"
+    Instagram:
       name: "instagram"
-      url: "https://instagram.com/gabrielmatteojones/"
-    pinterest:
-      name: "pinterest"
-      url: "http://pinterest.com/gabrieljonesit/"
-
-## Labels
-footer-links:
+      url: "http://instagram.com/onlygabbyme"
   it:
-    sezione-Legale:
-      name: "SezioneLegale"
-      url: "/legal/"
-    contatti:
-      name: "Contatti"
-      url: "/it/contatti"
+    Instagram:
+      name: "instagram"
+      url: "http://instagram.com/onlygabbyme"
+      
+## Labels
+italian-version:
+  en: "Italian version"
+  it: "Versione italiana"
+english-version:
+  en: "English version"
+  it: "Versione inglese"
+cookie-policy-info:
+  en: "This site uses technical, analytics and third-party cookies <br>By continuing to browse, you accept the use of cookies."
+  it: "Questo sito utilizza cookie tecnici, analytics e di terze parti.<br>Proseguendo nella navigazione accetti l’utilizzo dei cookie."
+cookie-policy-accept-btn:
+  en: "Ok"
+  it: "Accetto"
+footer-links:
+  en:
+    privacy-policy:
+      name: "Privacy policy"
+      url: "/en/privacy-policy"
+    cookie-policy:
+      name: "Cookie Policy"
+      url: "/en/cookie-policy"
+  it:
+    privacy-policy:
+      name: "Privacy policy"
+      url: "/it/privacy-policy"
+    cookie-policy:
+      name: "Cookie Policy"
+      url: "/it/cookie-policy"
 
 

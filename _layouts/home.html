@@ -1,15 +1,14 @@
 ---
 layout: default
 ---
-{% include hero.html %}
 
-<div class="container">
-<script type="text/javascript" src="https://www.protezionecivile.fvg.it/widgets/pcrfvgit_alert.js"></script><div class="pcrfvgit_alert_widget" data-istatcode="93022"></div>
-  </div>
-<article class="container my-4">
-{% include posts.html %}
+<section class="it-hero-wrapper" aria-label="In evidenza">
+   <div class="img-responsive-wrapper">
+      <div class="img-responsive">
+         <div class="img-wrapper"><img src="/assets/images/header.png" title="titolo immagine" alt="descrizione immagine"></div>
+      </div>
+   </div>
+</section>
 
-  <div class="entry">
-    {{ content }}
-  </div>
-</article>
+
+{{ content }}
