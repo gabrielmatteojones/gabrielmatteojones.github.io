@@ -1,7 +1,7 @@
 ---
 layout: home
-title: Benvenuto nel blog di Gabriel Matteo Jones
-description:
+title: Benvenuto sul sito di Gabriel Jones
+description: n/a
 lang: it
 ref: homepage
 permalink: /
