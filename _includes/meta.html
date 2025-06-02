@@ -1,30 +1,54 @@
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Sito ufficiale di Gabriel Jones">
-  <meta name="author" content="Gabriel Jones">
-  <meta property="og:title" content="Gabriel Jones">
-  <meta property="og:description" content="Sito ufficiale di Gabriel Jones">
-  <meta property="og:image" content="URL-dell'immagine">
-  <meta property="og:url" content="URL-del-sito">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Gabriel Jones">
-  <meta name="twitter:description" content="Sito ufficiale di Gabriel Jones">
-  <meta name="twitter:image" content="URL-dell'immagine">
-  
-  <title>Gabriel Jones</title>
+{%- capture meta_title -%}
+{{ site.data.t.name[page.lang] }}{% if page.title and page.title != 'Homepage' %} | {{ page.title }}{% endif %}
+{%- endcapture -%}
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+{%- capture meta_description -%}
+{%- if page.excerpt -%}
+{{ page.excerpt | strip_html }}
+{%- elsif page.description -%}
+{{ page.description | strip_html }}
+{%- else -%}
+{{ site.data.t.description[page.lang] }}
+{%- endif -%}
+{%- endcapture -%}
 
-  <style>
-    .navbar-brand {
-      font-size: 1.8rem;
-      font-weight: bold;
-    }
-    .nav-link {
-      font-size: 1.1rem;
-      padding: 0.75rem 1rem;
-    }
-  </style>
-</head>
+{%- capture meta_image_social -%}
+{%- if page.image -%}
+{{ site.url | append: page.image }}
+{%- else -%}
+{{ site.url | append: site.data.t.social-card }}
+{%- endif -%}
+{%- endcapture -%}
+
+<meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="{% if page.excerpt %}{{ page.excerpt| strip_html }}{% else %}{{ site.data.t.description[page.lang] }}{% endif %}">
+<meta name="author" content="{{ site.data.t.author[page.lang] }}">
+<meta name="generator" content="Jekyll {{site.version}}">
+
+{% comment %} Title {% endcomment %}
+<title>{{ meta_title }}</title>
+
+{% comment %} OpenGraph {% endcomment %}
+<meta property="og:url" content="{{ site.url | append: page.url }}">
+<meta property="og:title" content="{{ meta_title }}">
+<meta property="og:description" content="{{ meta_description }}">
+<meta property="og:type" content="website">
+<meta property="og:image" content="{{ meta_image_social | replace: 'https://', 'http://' }}">
+<meta property="og:image:secure_url" content="{{ meta_image_social }}">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+{% comment %} Web App Manifest {% endcomment %}
+<link rel="manifest" href="{{ site.url | append: '/assets/images/favicons/manifest.json' }}">
+
+{% comment %} XML Feed {% endcomment %}
+<link rel="alternate" type="application/rss+xml" title="{{ meta_title }}" href="{{ site.url | append: '/feed.xml' }}" />
+
+{% comment %} Indexing {% endcomment %}
+{% if site.noindex %}<meta name="robots" content="noindex, nofollow">{% endif %}
+
+
