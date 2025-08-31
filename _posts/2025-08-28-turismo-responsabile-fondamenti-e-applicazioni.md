@@ -5,7 +5,7 @@ description: "Un approfondimento in chiave divulgativa su turismo responsabile: 
 date: 2025-08-28 09:00:00 +0100
 categories: ["Viaggi e cultura urbana"]
 tags: [viaggi-e-cultura-urbana, lifestyle]
-image: "/assets/images/viaggi-e-cultura-urbana/turismo-responsabile-fondamenti-e-applicazioni.jpg"
+image: "https://www.usa.gov/s3/files/styles/webp/public/2024-01/Banner_img_Education.png.webp?itok=nkoenBiw"
 permalink: "/blog/viaggi-e-cultura-urbana/turismo-responsabile-fondamenti-e-applicazioni/"
 ---
 
