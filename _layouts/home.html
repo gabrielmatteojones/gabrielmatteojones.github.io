@@ -4,7 +4,7 @@ layout: default
 <div class="jumbotron p-3 p-md-5 text-white rounded"
      style="
        background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-                         url('{{ site.posts[0].image | default: '/assets/images/default.jpg' }}');
+                         url('{{ site.posts[0].image | default: 'https://www.usa.gov/s3/files/styles/webp/public/2024-01/Banner_img_Education.png.webp?itok=nkoenBiw' }}');
        background-size: cover;
        background-position: center;
      ">
@@ -34,7 +34,7 @@ layout: default
         <a href="{{ post.url | relative_url }}">Continue reading</a>
       </div>
       <img class="card-img-right flex-auto d-none d-lg-block" 
-           src="{{ post.image | default: 'https://wallpapers.com/images/hd/gossip-girl-classy-photography-bxye6g85g1bpwqzn.jpg' }}" 
+           src="{{ site.posts[0].image | default: 'https://www.usa.gov/s3/files/styles/webp/public/2024-01/Banner_img_Education.png.webp?itok=nkoenBiw' }}" 
            alt="Card image" style="width: 200px; height: 250px; object-fit: cover;">
     </div>
   </div>
