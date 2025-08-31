@@ -1,13 +1,15 @@
 ---
 layout: default
 ---
-<div class="jumbotron p-3 p-md-5 text-white rounded"
+<a href="{{ site.posts[0].url | relative_url }}" class="text-white font-weight-bold">
+     <div class="jumbotron p-3 p-md-5 text-white rounded"
      style="
        background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
                          url('{{ site.posts[0].image | default: 'https://www.usa.gov/s3/files/styles/webp/public/2024-01/Banner_img_Education.png.webp?itok=nkoenBiw' }}');
        background-size: cover;
        background-position: center;
-     ">
+     "></div>
+</a>
   <div class="col-md-6 px-0">
     <h1 class="display-4 font-italic">{{ site.posts[0].title }}</h1>
     <p class="lead my-3">{{ site.posts[0].excerpt | strip_html | truncate: 150 }}</p>
