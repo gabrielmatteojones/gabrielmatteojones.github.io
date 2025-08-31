@@ -5,7 +5,7 @@ description: "Un approfondimento in chiave divulgativa su città lente e cammina
 date: 2025-09-06 09:00:00 +0100
 categories: ["Viaggi e cultura urbana"]
 tags: [viaggi-e-cultura-urbana, lifestyle]
-image: "/assets/images/viaggi-e-cultura-urbana/citta-lente-e-camminabilita-fondamenti-e-applicazioni.jpg"
+image: "https://www.usa.gov/s3/files/styles/webp/public/2024-01/Banner_img_Education.png.webp?itok=nkoenBiw"
 permalink: "/blog/viaggi-e-cultura-urbana/citta-lente-e-camminabilita-fondamenti-e-applicazioni/"
 ---
 
