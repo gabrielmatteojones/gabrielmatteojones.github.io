@@ -106,29 +106,36 @@
 <main>
 <section class="hero">
   <div class="container hero-grid">
-    
-    <!-- Post in evidenza -->
-    {% assign featured = site.posts | where: "featured", true | first %}
-    {% if featured %}
-    <article class="card featured">
-      <div class="media" role="img" style="background-image: url('{{ featured.image | relative_url }}');"></div>
-      <div class="content">
-        <div class="eyebrow">In evidenza</div>
-        <h2 class="title">{{ featured.title }}</h2>
-        <p class="muted">{{ featured.excerpt | strip_html | truncate: 120 }}</p>
-        <a class="btn" href="{{ featured.url | relative_url }}">Leggi l'articolo</a>
-      </div>
-    </article>
+    {% if site.posts and site.posts.size > 0 %}
+      {% assign featured = site.posts.first %}
+      {% assign featured_url = featured.url %}
+
+      <!-- Post in evidenza (ultimo post) -->
+      <article class="card featured">
+        <div class="media" role="img"
+             style="background-image: url('{{ featured.image | default: '/assets/img/default.jpg' | relative_url }}');"></div>
+        <div class="content">
+          <div class="eyebrow">In evidenza</div>
+          <h2 class="title"><a href="{{ featured.url | relative_url }}">{{ featured.title }}</a></h2>
+          <p class="muted">{{ featured.excerpt | strip_html | truncate: 120 }}</p>
+          <a class="btn" href="{{ featured.url | relative_url }}">Leggi l'articolo</a>
+        </div>
+      </article>
     {% endif %}
 
-    <!-- Articoli recenti -->
+    <!-- Articoli recenti (esclude l'ultimo/featured) -->
     <aside class="card pad">
       <h3>Articoli recenti</h3>
       <div class="recent-grid">
-        {% assign recent_posts = site.posts | where_exp: "post", "post.featured != true" | limit: 4 %}
+        {% if site.posts and site.posts.size > 0 %}
+          {% assign recent_posts = site.posts | where_exp: "post", "post.url != featured_url" | limit: 4 %}
+        {% else %}
+          {% assign recent_posts = site.posts | limit: 4 %}
+        {% endif %}
+
         {% for post in recent_posts %}
         <div class="recent-card">
-          <h4>{{ post.title }}</h4>
+          <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
           <a href="{{ post.url | relative_url }}">Leggi</a>
         </div>
         {% endfor %}
