@@ -1,54 +1,125 @@
 ---
 layout: default
----
-<a href="{{ site.posts[0].url | relative_url }}" class="text-white font-weight-bold">
-     <div class="jumbotron p-3 p-md-5 text-white rounded"
-     style="
-       background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-                         url('{{ site.posts[0].image | default: 'https://www.usa.gov/s3/files/styles/webp/public/2024-01/Banner_img_Education.png.webp?itok=nkoenBiw' }}');
-       background-size: cover;
-       background-position: center;
-     ">
-</a>
-  <div class="col-md-6 px-0">
-    <h1 class="display-4 font-italic">{{ site.posts[0].title }}</h1>
-    <p class="lead my-3">{{ site.posts[0].excerpt | strip_html | truncate: 150 }}</p>
-    <p class="lead mb-0">
-      <a href="{{ site.posts[0].url | relative_url }}" class="text-white font-weight-bold">Continue reading...</a>
-    </p>
-  </div>
-</div>
+---<section class="hero">
+<section class="b2">
+  
+  <section class="b2">
+  <div class="container hero-grid">
 
-<br>
-<div class="row mb-2">
-  {% for post in site.posts offset:1 limit:2 %}
-  <div class="col-md-6">
-    <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-      <div class="card-body d-flex flex-column align-items-start">
-        {% if post.categories[0] %}
-        <strong class="d-inline-block mb-2 text-primary">{{ post.categories[0] | capitalize }}</strong>
-        {% endif %}
-        <h3 class="mb-0">
-          <a class="text-dark" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        </h3>
-        <div class="mb-1 text-muted">{{ post.date | date: "%b %d, %Y" }}</div>
-        <p class="card-text mb-auto">{{ post.excerpt | strip_html | truncate: 120 }}</p>
-        <a href="{{ post.url | relative_url }}">Continue reading</a>
+    {% assign featured = site.posts.first %}
+    {% if featured %}
+    <!-- Post in evidenza (ultimo post) -->
+    <article class="card featured">
+      <div class="media gradient" role="img"></div>
+      <div class="content">
+        <div class="eyebrow">In evidenza</div>
+        <h2 class="title"><a href="{{ featured.url | relative_url }}">{{ featured.title }}</a></h2>
+        <p class="muted">{{ featured.excerpt | strip_html | truncate: 120 }}</p>
+        <a class="btn" href="{{ featured.url | relative_url }}">Leggi l'articolo</a>
       </div>
-      <img class="card-img-right flex-auto d-none d-lg-block" 
-           src="{{ site.posts[0].image | default: 'https://www.usa.gov/s3/files/styles/webp/public/2024-01/Banner_img_Education.png.webp?itok=nkoenBiw' }}" 
-           alt="Card image" style="width: 200px; height: 250px; object-fit: cover;">
+    </article>
+    {% endif %}
+
+    <!-- Sidebar Articoli Recenti -->
+<aside class="card pad">
+  <h3>Articoli recenti</h3>
+  <div class="recent-grid">
+    {% assign featured = site.posts.first %}
+    {% assign recent_posts = site.posts | where_exp: "post", "post.url != featured.url" %}
+    {% assign recent_posts = recent_posts | slice: 0,3 %}
+
+    {% for post in recent_posts %}
+      <div class="recent-card">
+        <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
+        <a href="{{ post.url | relative_url }}">Leggi</a>
+      </div>
+    {% endfor %}
+  </div>
+</aside>
+
+
+  </div>
+
+  <!-- Categorie (statiche) -->
+  <div class="container cats" id="categorie">
+    <a class="cat" href="#"><span class="icon">A</span>
+      <div><strong>Grammatica</strong><br><span class="muted">Lingua italiana</span></div>
+    </a>
+    <a class="cat" href="#"><span class="icon">📖</span>
+      <div><strong>Letteratura</strong><br><span class="muted">Classici e letture</span></div>
+    </a>
+    <a class="cat" href="#"><span class="icon">✍️</span>
+      <div><strong>Lifestyle</strong><br><span class="muted">Benessere e organizzazione</span></div>
+    </a>
+    <a class="cat" href="#"><span class="icon">👨‍💻</span>
+      <div><strong>Sezione Nerd</strong><br><span class="muted">Informatica e scienza nerd</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- Ultimi articoli (2 post successivi) -->
+<section class="latest">
+  <div class="container">
+    <h3>Ultimi articoli</h3>
+    <div class="grid-posts">
+      {% assign latest_posts = site.posts | slice: 1,2 %}
+      {% for post in latest_posts %}
+      <article class="post">
+        <div class="thumb gradient"></div>
+        <div class="body">
+          <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
+          <p class="muted">{{ post.excerpt | strip_html | truncate: 100 }}</p>
+          <a class="btn" href="{{ post.url | relative_url }}">Leggi</a>
+        </div>
+      </article>
+      {% endfor %}
     </div>
   </div>
-  {% endfor %}
-</div>
+</section>
 
+</section>
+
+<!-- Ultimi articoli (mostra solo 2 post dopo il featured) -->
+
+<!-- Ultimi articoli -->
+<section class="latest">
+  <div class="container">
+    <h3>Ultimi articoli</h3>
+    <div class="grid-posts">
+      {% if site.posts and site.posts.size > 1 %}
+        {% assign latest_posts = site.posts | where_exp: "post", "post.url != featured_url" | limit: 2 %}
+      {% else %}
+        {% assign latest_posts = site.posts | limit: 3 %}
+      {% endif %}
+      {% for post in latest_posts %}
+      <article class="post">
+        <div class="thumb gradient"></div>
+        <div class="body">
+          <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
+          <p class="muted">{{ post.excerpt | strip_html | truncate: 100 }}</p>
+          <a class="btn" href="{{ post.url | relative_url }}">Leggi</a>
+        </div>
+      </article>
+      {% endfor %}
     </div>
+  </div>
+</section>
 
-    <main role="main" class="container">
+  <section class="container">
+    <h3>Video della settimana</h3>
+    <iframe class="video" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+  </section>
 
+  <section class="container" id="autori">
+    <h3>Autori</h3>
+    <div class="authors">
+      <div class="author"><div class="avatar"></div><div><strong>Gabriel Jones</strong><br><span class="muted">Autore Primario</span></div></div>
+      <div class="author"><div class="avatar"></div><div><strong>Francesca Soria</strong><br><span class="muted">Autore pedagogico</span></div></div>
+    </div>
+  </section>
 
-
-         {{ content }}
-
-    </main><!-- /.container -->
+  <section class="container cta-band" id="iscrizione">
+    <h3>Iscriviti alla newsletter</h3>
+    <p>Ricevi ogni settimana nuovi articoli e risorse didattiche.</p>
+    <form><input type="email" placeholder="La tua email" required><button type="submit">Iscriviti</button></form>
+  </section>
