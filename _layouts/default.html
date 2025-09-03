@@ -123,12 +123,14 @@
       </div>
     </article>
     {% endif %}
-<!-- Sidebar Articoli Recenti -->
+
+    <!-- Sidebar Articoli Recenti -->
 <aside class="card pad">
   <h3>Articoli recenti</h3>
   <div class="recent-grid">
     {% assign featured = site.posts.first %}
-    {% assign recent_posts = site.posts | where_exp: "post", "post.url != featured.url" | limit:5 %}
+    {% assign recent_posts = site.posts | where_exp: "post", "post.url != featured.url" %}
+    {% assign recent_posts = recent_posts | slice: 0,4 %}
 
     {% for post in recent_posts %}
       <div class="recent-card">
@@ -138,6 +140,7 @@
     {% endfor %}
   </div>
 </aside>
+
 
   </div>
 
