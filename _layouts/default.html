@@ -105,6 +105,7 @@
 
 <main>
 <section class="hero">
+<section class="hero">
   <div class="container hero-grid">
     {% if site.posts and site.posts.size > 0 %}
       {% assign featured = site.posts.first %}
@@ -121,24 +122,6 @@
         </div>
       </article>
     {% endif %}
-
-    <!-- Articoli recenti -->
-    <aside class="card pad">
-      <h3>Articoli recenti</h3>
-      <div class="recent-grid">
-        {% if site.posts and site.posts.size > 1 %}
-          {% assign recent_posts = site.posts | where_exp: "post", "post.url != featured_url" | limit: 4 %}
-        {% else %}
-          {% assign recent_posts = site.posts | limit: 4 %}
-        {% endif %}
-        {% for post in recent_posts %}
-        <div class="recent-card">
-          <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
-          <a href="{{ post.url | relative_url }}">Leggi</a>
-        </div>
-        {% endfor %}
-      </div>
-    </aside>
   </div>
 
   <!-- Categorie (statiche) -->
@@ -155,14 +138,34 @@
     <a class="cat" href="#"><span class="icon">👨‍💻</span>
       <div><strong>Sezione Nerd</strong><br><span class="muted">Informatica e scienza nerd</span></div>
     </a>
-    <a class="cat" href="#"><span class="icon">📌</span>
-      <div><strong>Pedagogia</strong><br><span class="muted">Benessere e organizzazione</span></div>
-    </a>
-    <a class="cat" href="#"><span class="icon">🧖‍♂️</span>
-      <div><strong>Biblioteconomia</strong><br><span class="muted">Biblioteca & studi di lettere</span></div>
-    </a>
   </div>
 </section>
+
+<!-- Ultimi articoli (mostra solo 2 post dopo il featured) -->
+<section class="latest">
+  <div class="container">
+    <h3>Ultimi articoli</h3>
+    <div class="grid-posts">
+      {% if site.posts.size > 1 %}
+        {% assign latest_posts = site.posts | where_exp: "post", "post.url != featured_url" | limit: 2 %}
+      {% else %}
+        {% assign latest_posts = site.posts | limit: 2 %}
+      {% endif %}
+
+      {% for post in latest_posts %}
+      <article class="post">
+        <div class="thumb gradient"></div>
+        <div class="body">
+          <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
+          <p class="muted">{{ post.excerpt | strip_html | truncate: 100 }}</p>
+          <a class="btn" href="{{ post.url | relative_url }}">Leggi</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
 
 <!-- Ultimi articoli -->
 <section class="latest">
