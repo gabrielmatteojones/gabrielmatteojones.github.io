@@ -2,116 +2,45 @@
 layout: default
 ---
 
-<article class="post">
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-meta">
-      Pubblicato il {{ page.date | date: "%d %B %Y" }} 
-      {% if page.author %} da {{ page.author }}{% endif %}
-    </p>
-  </header>
+<div class="container">
 
-  {% if page.video %}
-  <div class="post-video">
-    <iframe src="{{ page.video }}" title="{{ page.title }}" frameborder="0" allowfullscreen></iframe>
+  <!-- Hero del post -->
+  <div class="hero-sidebar">
+    <!-- Hero principale -->
+    <section class="hero">
+      {% if page.image %}
+        <img src="{{ page.image }}" alt="{{ page.title }}">
+      {% else %}
+        <img src="https://source.unsplash.com/900x400/?books,education" alt="Post in evidenza">
+      {% endif %}
+      <h2>{{ page.title }}</h2>
+      <p class="post-meta">
+        Pubblicato il {{ page.date | date: "%d %B %Y" }}
+        {% if page.author %} da {{ page.author }}{% endif %}
+      </p>
+    </section>
+
+    <!-- Sidebar ultimi 3 post -->
+    <aside class="sidebar">
+      <h3>Ultimi Articoli</h3>
+      {% for post in site.posts limit:3 %}
+        {% if post.url != page.url %}
+        <div class="sidebar-article">
+          {% if post.image %}
+          <img src="{{ post.image }}" alt="{{ post.title }}">
+          {% else %}
+          <img src="https://source.unsplash.com/400x200/?books,writing" alt="{{ post.title }}">
+          {% endif %}
+          <a href="{{ post.url }}">{{ post.title }}</a>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </aside>
   </div>
-  {% endif %}
 
-  <div class="post-content">
+  <!-- Contenuto del post -->
+  <div class="post-content" style="margin-top: 30px; background-color: #ffffff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
     {{ content }}
   </div>
 
-  <!-- Sidebar ultimi articoli -->
-  <aside class="post-sidebar">
-    <h3>Ultimi Articoli</h3>
-    <ul>
-      {% for post in site.posts limit:3 %}
-        {% if post.url != page.url %}
-        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-        {% endif %}
-      {% endfor %}
-    </ul>
-  </aside>
-</article>
-
-<style>
-.post {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  margin-bottom: 50px;
-}
-
-.post-header {
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.post-title {
-  font-family: 'Merriweather', serif;
-  font-size: 2em;
-  color: #2c3e50;
-  margin: 0;
-}
-
-.post-meta {
-  color: #7f8c8d;
-  font-size: 0.9em;
-  margin-top: 5px;
-}
-
-.post-video iframe {
-  width: 100%;
-  max-height: 450px;
-  border-radius: 12px;
-  margin: 20px 0;
-}
-
-.post-content {
-  flex: 0 0 70%;
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-.post-sidebar {
-  flex: 0 0 25%;
-  background-color: #ffffff;
-  padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  height: fit-content;
-}
-
-.post-sidebar h3 {
-  margin-top: 0;
-  font-family: 'Merriweather', serif;
-  color: #2c3e50;
-}
-
-.post-sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.post-sidebar ul li {
-  margin-bottom: 10px;
-}
-
-.post-sidebar ul li a {
-  text-decoration: none;
-  color: #3498db;
-  font-weight: 600;
-}
-
-.post-sidebar ul li a:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-  .post-content, .post-sidebar {
-    flex: 1 1 100%;
-  }
-}
-</style>
+</div>
