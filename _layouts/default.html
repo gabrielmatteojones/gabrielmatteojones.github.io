@@ -105,23 +105,23 @@
 
 <main>
 <section class="hero">
-<section class="hero">
+<section class="hero"><section class="hero">
   <div class="container hero-grid">
-    {% if site.posts and site.posts.size > 0 %}
-      {% assign featured = site.posts.first %}
-      {% assign featured_url = featured.url %}
 
-      <!-- Post in evidenza (ultimo post con gradiente) -->
-      <article class="card featured">
-        <div class="media gradient" role="img"></div>
-        <div class="content">
-          <div class="eyebrow">In evidenza</div>
-          <h2 class="title"><a href="{{ featured.url | relative_url }}">{{ featured.title }}</a></h2>
-          <p class="muted">{{ featured.excerpt | strip_html | truncate: 120 }}</p>
-          <a class="btn" href="{{ featured.url | relative_url }}">Leggi l'articolo</a>
-        </div>
-      </article>
+    {% assign featured = site.posts.first %}
+    {% if featured %}
+    <!-- Post in evidenza (ultimo post) -->
+    <article class="card featured">
+      <div class="media gradient" role="img"></div>
+      <div class="content">
+        <div class="eyebrow">In evidenza</div>
+        <h2 class="title"><a href="{{ featured.url | relative_url }}">{{ featured.title }}</a></h2>
+        <p class="muted">{{ featured.excerpt | strip_html | truncate: 120 }}</p>
+        <a class="btn" href="{{ featured.url | relative_url }}">Leggi l'articolo</a>
+      </div>
+    </article>
     {% endif %}
+
   </div>
 
   <!-- Categorie (statiche) -->
@@ -139,6 +139,28 @@
       <div><strong>Sezione Nerd</strong><br><span class="muted">Informatica e scienza nerd</span></div>
     </a>
   </div>
+</section>
+
+<!-- Ultimi articoli (2 post successivi) -->
+<section class="latest">
+  <div class="container">
+    <h3>Ultimi articoli</h3>
+    <div class="grid-posts">
+      {% assign latest_posts = site.posts | slice: 1,2 %}
+      {% for post in latest_posts %}
+      <article class="post">
+        <div class="thumb gradient"></div>
+        <div class="body">
+          <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
+          <p class="muted">{{ post.excerpt | strip_html | truncate: 100 }}</p>
+          <a class="btn" href="{{ post.url | relative_url }}">Leggi</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
 </section>
 
 <!-- Ultimi articoli (mostra solo 2 post dopo il featured) -->
