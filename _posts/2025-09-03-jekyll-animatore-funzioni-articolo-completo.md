@@ -4,6 +4,7 @@ title: "Le scuole di pensiero sulle funzioni dell’animatore"
 date: 2025-09-01
 author: "Gabriel Jones"
 category: fii25
+image: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZl-0dZfl4UUf6xSPG7FqYsKl9ZRB6cv3Qjw&s
 ---
 
 # Le scuole di pensiero sulle funzioni dell’animatore
