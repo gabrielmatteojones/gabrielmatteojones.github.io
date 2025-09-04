@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Le scuole di pensiero sulle funzioni dell’animatore"
-date: 2025-09-05
+date: 2025-09-01
 author: "Gabriel Jones"
 category: fii25
 ---
