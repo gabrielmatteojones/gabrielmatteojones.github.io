@@ -8,11 +8,6 @@ layout: default
   <div class="hero-sidebar">
     <!-- Hero principale -->
     <section class="hero">
-      {% if page.image %}
-        <img src="{{ page.image }}" alt="{{ page.title }}">
-      {% else %}
-        <img src="https://source.unsplash.com/900x400/?books,education" alt="Post in evidenza">
-      {% endif %}
       <h2>{{ page.title }}</h2>
       <p class="post-meta">
         Pubblicato il {{ page.date | date: "%d %B %Y" }}
