@@ -8,16 +8,13 @@ layout: default
   <div class="hero-sidebar">
     <!-- Hero principale -->
     <section class="hero">
-      <h2>{{ page.title }}</h2>
+      <h1>{{ page.title }}</h1>
       <p class="post-meta">
         Pubblicato il {{ page.date | date: "%d %B %Y" }}
         {% if page.author %} da {{ page.author }}{% endif %}
       </p>
+      <div class="post-content" style="margin-top: 30px; background-color: #ffffff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); font-size: 17px;";>
+        {{ content }}
+      </div>
     </section>
-
-  <!-- Contenuto del post -->
-  <div class="post-content" style="margin-top: 30px; background-color: #ffffff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); font-size: 17px;";>
-    {{ content }}
-  </div>
-
 </div>
