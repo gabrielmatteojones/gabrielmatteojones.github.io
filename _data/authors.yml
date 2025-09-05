@@ -1,0 +1,18 @@
+# Authors
+
+Name Name:
+  name        : "Gabriel Jones"
+  uri         : "http://gabrieljones.it"
+  email       : "gjones@agfo.fvg.it"
+  bio         : "nessuna bio, solo realtà."
+  avatar      : "https://2.gravatar.com/avatar/53241b11fb23d653d6c97ab192be4c459ef4201d71bffe0b87f8c09c061c577b?size=256&d=initials"
+  twitter     : "name"
+  google_plus : "Name"
+
+Name2 Name2:
+  name        : "Name2 Name2"
+  email       : "name2@name2.com"
+  bio         : "I ordered what?"
+  avatar      : "bio-photo.jpg"
+  twitter     : "name2"
+  google_plus : "Name"

@@ -1,0 +1,92 @@
+backend:
+  name: git-gateway
+  branch: master  # Cambia con il tuo branch principale se non è 'main'
+
+media_folder: "images/uploads"      # Dove vengono salvati i file (nella repo)
+public_folder: "/images/uploads"    # Percorso pubblico per accedere ai file
+
+collections:
+  - name: "posts"
+    label: "Blog Posts"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Categories", name: "categories", widget: "list" }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "publications"
+    label: "Publications"
+    folder: "_publications"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Collection", name: "collection", widget: "string", required: false }
+      - { label: "Authors", name: "authors", widget: "string" }
+      - { label: "Year", name: "year", widget: "number" }
+      - { label: "Journal", name: "journal", widget: "string", required: false }
+      - { label: "Abstract", name: "abstract", widget: "text", required: false }
+      - { label: "URL", name: "url", widget: "string", required: false }
+      - { label: "PDF", name: "pdf", widget: "string", required: false }
+      - { label: "DOI", name: "doi", widget: "string", required: false }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  - name: "teaching"
+    label: "Teaching"
+    folder: "_teaching"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Type", name: "type", widget: "string" }
+      - { label: "Year", name: "year", widget: "number" }
+      - { label: "Semester", name: "semester", widget: "string" }
+      - { label: "Location", name: "location", widget: "string", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "projects"
+    label: "Projects"
+    folder: "_projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Summary", name: "summary", widget: "text" }
+      - { label: "URL", name: "url", widget: "string", required: false }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  - name: "talks"
+    label: "Talks"
+    folder: "_talks"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Event", name: "event", widget: "string" }
+      - { label: "Location", name: "location", widget: "string", required: false }
+      - { label: "URL", name: "url", widget: "string", required: false }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "About"
+        name: "about"
+        file: "about.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - label: "CV"
+        name: "cv"
+        file: "cv.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
